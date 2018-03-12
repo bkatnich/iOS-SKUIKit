@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/SKFoundation-Swift.h</key>
 		<data>
-		OYR3ZRYlOAld8si6X45IQeWBDb0=
+		LsogRrG+naWgTSZKyHp3eRD1sUY=
 		</data>
 		<key>Headers/SKFoundation.h</key>
 		<data>
@@ -14,15 +14,15 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		FC9BuBNW/HGDz5NZEj9L82o9f+k=
+		jhRQXn5+VC+2Y2vturvRIbXFDcQ=
 		</data>
 		<key>Modules/SKFoundation.swiftmodule/x86_64.swiftdoc</key>
 		<data>
-		X5gb0ODiRwdZzUH4NHij2hXEBN4=
+		FWjFTZFiJZCpn3wakCaS/QcT/I0=
 		</data>
 		<key>Modules/SKFoundation.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		5RDplbWgcFp5B/EKHpMxpO2JoRQ=
+		7U58G4MtqWMH6rnHpngQ4nHFmVY=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -35,11 +35,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			OYR3ZRYlOAld8si6X45IQeWBDb0=
+			LsogRrG+naWgTSZKyHp3eRD1sUY=
 			</data>
 			<key>hash2</key>
 			<data>
-			Z8BHMvHCWivhN6YpkKfCJd1yKpaiKTWX55o9ZDNOu8I=
+			/2AG9ugSfSW2kJdEDJYy/2czBIIMksjPwBCvhj+Ul/A=
 			</data>
 		</dict>
 		<key>Headers/SKFoundation.h</key>
@@ -57,22 +57,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			X5gb0ODiRwdZzUH4NHij2hXEBN4=
+			FWjFTZFiJZCpn3wakCaS/QcT/I0=
 			</data>
 			<key>hash2</key>
 			<data>
-			8Wx66vtahPfkIMfT+S+gsQ7xiMl5oB55W7r4dwwq3P0=
+			pvWdxYj4bPCNfz6NqyTFuHBqPbYqWyLdg4y9U36gTx8=
 			</data>
 		</dict>
 		<key>Modules/SKFoundation.swiftmodule/x86_64.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			5RDplbWgcFp5B/EKHpMxpO2JoRQ=
+			7U58G4MtqWMH6rnHpngQ4nHFmVY=
 			</data>
 			<key>hash2</key>
 			<data>
-			vHl5wpr9DGZYFKCdIxKJhDFNJLKRtEhq5oiBAGc2qjQ=
+			2poDnnwG7tXQzDFsRKcy3paaCugU39THRvvB5STsclY=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

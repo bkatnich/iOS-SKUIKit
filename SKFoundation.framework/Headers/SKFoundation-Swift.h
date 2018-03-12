@@ -207,6 +207,18 @@ SWIFT_PROTOCOL("_TtP12SKFoundation19SKContentDataSource_")
 @end
 
 
+/// The SKFramework protocol should be implemented on the self-named framework main struct.
+SWIFT_PROTOCOL("_TtP12SKFoundation11SKFramework_")
+@protocol SKFramework
+/// Start the initialization processes of the framework to provide common,
+/// shared services both inside and outside the framework.
++ (void)start;
+/// Retrieve the current runtime status of the framework.
+/// @return String
++ (NSString * _Nonnull)debugStatus SWIFT_WARN_UNUSED_RESULT;
+@end
+
+
 /// The HTTP router engine wraper that manages all external network calls.
 SWIFT_CLASS("_TtC12SKFoundation8SKRouter")
 @interface SKRouter : NSObject

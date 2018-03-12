@@ -1,9 +1,12 @@
 PODS:
-  - Alamofire (4.6.0)
+  - Alamofire (4.7.0)
   - AlamofireObjectMapper (5.0.0):
     - Alamofire (~> 4.1)
     - ObjectMapper (~> 3.0)
-  - DeviceKit (1.4.0)
+  - ChameleonFramework/Default (2.1.0)
+  - ChameleonFramework/Swift (2.1.0):
+    - ChameleonFramework/Default
+  - DeviceKit (1.5.0)
   - FontAwesome.swift (1.3.2)
   - Locksmith (4.0.0)
   - ObjectMapper (3.1.0)
@@ -13,22 +16,33 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 4.6)
   - AlamofireObjectMapper (~> 5.0)
+  - ChameleonFramework/Swift (from `https://github.com/ViccAlexander/Chameleon.git`)
   - DeviceKit
   - FontAwesome.swift
   - Locksmith
   - SwiftyBeaver
   - SwiftyJSON
 
+EXTERNAL SOURCES:
+  ChameleonFramework:
+    :git: https://github.com/ViccAlexander/Chameleon.git
+
+CHECKOUT OPTIONS:
+  ChameleonFramework:
+    :commit: 6dd284bde21ea2e7f9fd89bc36f40df16e16369d
+    :git: https://github.com/ViccAlexander/Chameleon.git
+
 SPEC CHECKSUMS:
-  Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
+  Alamofire: 907e0a98eb68cdb7f9d1f541a563d6ac5dc77b25
   AlamofireObjectMapper: 5fafc816351cbbc0d486611aaeba7461c0cbad49
-  DeviceKit: fa74d97499660e88081718b16688e19217595dba
+  ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
+  DeviceKit: 883552d64028056216e913a88f892e7e29678e75
   FontAwesome.swift: b4e4c8ccbbecb12f9b592bc533ff237af3706667
   Locksmith: e9bebbaaa4cee3c511bc358a44f843c3fe00e21f
   ObjectMapper: 20505058f54e5c3ca69e1d6de9897d152a5369a6
   SwiftyBeaver: 4f74563624b2c1e821c522c54142b5dd5ebb0f30
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: 08f4628ecf0fde5f2b601ec4044023c9181b31c6
+PODFILE CHECKSUM: ab85ebe86600351ecc03c18112343f9ee392dcf5
 
 COCOAPODS: 1.3.1

@@ -8,6 +8,58 @@
 
 import UIKit
 import SKFoundation
+import ChameleonFramework
+
+
+/**
+ * SKUIKit is the core UI framework of the SandKatt iOS Platform.
+ */
+public class SKUIKit: SKFramework
+{
+    // MARK: Properties
+    
+    
+    // MARK: Lifecycle
+    
+    /**
+     * Start the initialization processes of the framework to provide common,
+     * shared services both inside and outside the framework.
+     */
+    public static func start()
+    {
+        //
+        // Global Theme
+        //
+        Chameleon.setGlobalThemeUsingPrimaryColor(FlatSkyBlue(),
+            withSecondaryColor: FlatSkyBlue(),
+            usingFontName: "HelveticaNeue",
+            andContentStyle: UIContentStyle.contrast)
+        
+        //
+        // Log startup state
+        //
+        log.debug("\n\n" + self.debugStatus() + "\n\n")
+    }
+    
+    
+    // MARK: Lifecycle
+    
+    /**
+     * Retrieve the current debug values in a formatted String.
+     *
+     * @returns String.
+     */
+    public static func debugStatus() -> String
+    {
+        //
+        // Log startup state
+        //
+        let debugStatus =
+            "-- Style --"
+        
+        return debugStatus
+    }
+}
 
 
 // MARK: -- Extensions --
