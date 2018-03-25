@@ -8,7 +8,6 @@
 
 import UIKit
 import SKFoundation
-import ChameleonFramework
 
 
 /**
@@ -17,6 +16,8 @@ import ChameleonFramework
 public class SKUIKit: SKFramework
 {
     // MARK: Properties
+    
+    static let themeManager = SKThemeManager.shared()
     
     
     // MARK: Lifecycle
@@ -28,17 +29,9 @@ public class SKUIKit: SKFramework
     public static func start()
     {
         //
-        // Global Theme
-        //
-        Chameleon.setGlobalThemeUsingPrimaryColor(FlatSkyBlue(),
-            withSecondaryColor: FlatSkyBlue(),
-            usingFontName: "HelveticaNeue",
-            andContentStyle: UIContentStyle.contrast)
-        
-        //
         // Log startup state
         //
-        log.debug("\n\n" + self.debugStatus() + "\n\n")
+        log.debug("\n\n" + self.debugStatus())
     }
     
     
@@ -54,8 +47,7 @@ public class SKUIKit: SKFramework
         //
         // Log startup state
         //
-        let debugStatus =
-            "-- Style --"
+        let debugStatus = "-- Theme --\n\n" + themeManager.debugDescription
         
         return debugStatus
     }

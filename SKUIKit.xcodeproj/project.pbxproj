@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A9C0DEA17B52F1C75C2DDAF2 /* Pods_SKUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 187D6B0C119FACE6E273AA8F /* Pods_SKUIKit.framework */; };
+		E4042FD320682AFA008B5546 /* SKGlobalTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4042FD220682AFA008B5546 /* SKGlobalTabBarController.swift */; };
 		E42C7FA520544410001B2593 /* SKUIKitDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42C7FA42054440F001B2593 /* SKUIKitDataSource.swift */; };
 		E43899B4204CB5D600D55336 /* SKSplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43899B3204CB5D600D55336 /* SKSplashViewController.swift */; };
 		E441EC162055F77A00918ED1 /* SKFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E441EC152055F77A00918ED1 /* SKFoundation.framework */; };
@@ -20,17 +21,22 @@
 		E4516A1A203B7FAF000EED00 /* SKCollectionViewMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4516A19203B7FAF000EED00 /* SKCollectionViewMenuCell.swift */; };
 		E4516A1C203B87FF000EED00 /* SKCollectionViewMenuDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4516A1B203B87FF000EED00 /* SKCollectionViewMenuDataSource.swift */; };
 		E4516A1E203B899E000EED00 /* SKTableViewMenuDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4516A1D203B899E000EED00 /* SKTableViewMenuDataSource.swift */; };
+		E49DCA4C205F8081006DFB43 /* SKThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49DCA4B205F8081006DFB43 /* SKThemeManager.swift */; };
+		E4BC458C20638271002AECEB /* SKGlobalNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BC458B20638271002AECEB /* SKGlobalNavigationViewController.swift */; };
+		E4BC458E2063827E002AECEB /* SKDetailNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BC458D2063827E002AECEB /* SKDetailNavigationViewController.swift */; };
 		E4E3890220015600002B1074 /* SKUIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = E4E3890020015600002B1074 /* SKUIKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E4E5934D204DFB2300E6138B /* SKSplashViewController.swift in Headers */ = {isa = PBXBuildFile; fileRef = E43899B3204CB5D600D55336 /* SKSplashViewController.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		E4F1379320298FD6005211AF /* SKTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F1379220298FD6005211AF /* SKTableViewController.swift */; };
 		E4F13799202991A1005211AF /* SKTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F13798202991A1005211AF /* SKTableViewCell.swift */; };
 		E4F1379B202992B3005211AF /* SKCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F1379A202992B3005211AF /* SKCollectionViewCell.swift */; };
 		E4F1379D202992F9005211AF /* SKCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F1379C202992F9005211AF /* SKCollectionViewController.swift */; };
+		E4FF186D2056383800C94757 /* SKBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FF186C2056383800C94757 /* SKBackgroundView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		187D6B0C119FACE6E273AA8F /* Pods_SKUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SKUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B59FFAFD7C2A25DBFB69D76A /* Pods-SKUIKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SKUIKit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SKUIKit/Pods-SKUIKit.debug.xcconfig"; sourceTree = "<group>"; };
+		E4042FD220682AFA008B5546 /* SKGlobalTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKGlobalTabBarController.swift; sourceTree = "<group>"; };
 		E42C7FA42054440F001B2593 /* SKUIKitDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKUIKitDataSource.swift; sourceTree = "<group>"; };
 		E43899B3204CB5D600D55336 /* SKSplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKSplashViewController.swift; sourceTree = "<group>"; };
 		E441EC152055F77A00918ED1 /* SKFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SKFoundation.framework; sourceTree = "<group>"; };
@@ -43,6 +49,9 @@
 		E4516A19203B7FAF000EED00 /* SKCollectionViewMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKCollectionViewMenuCell.swift; sourceTree = "<group>"; };
 		E4516A1B203B87FF000EED00 /* SKCollectionViewMenuDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKCollectionViewMenuDataSource.swift; sourceTree = "<group>"; };
 		E4516A1D203B899E000EED00 /* SKTableViewMenuDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKTableViewMenuDataSource.swift; sourceTree = "<group>"; };
+		E49DCA4B205F8081006DFB43 /* SKThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKThemeManager.swift; sourceTree = "<group>"; };
+		E4BC458B20638271002AECEB /* SKGlobalNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKGlobalNavigationViewController.swift; sourceTree = "<group>"; };
+		E4BC458D2063827E002AECEB /* SKDetailNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKDetailNavigationViewController.swift; sourceTree = "<group>"; };
 		E4E388FD20015600002B1074 /* SKUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SKUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4E3890020015600002B1074 /* SKUIKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SKUIKit.h; sourceTree = "<group>"; };
 		E4E3890120015600002B1074 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -50,6 +59,7 @@
 		E4F13798202991A1005211AF /* SKTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKTableViewCell.swift; sourceTree = "<group>"; };
 		E4F1379A202992B3005211AF /* SKCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKCollectionViewCell.swift; sourceTree = "<group>"; };
 		E4F1379C202992F9005211AF /* SKCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKCollectionViewController.swift; sourceTree = "<group>"; };
+		E4FF186C2056383800C94757 /* SKBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKBackgroundView.swift; sourceTree = "<group>"; };
 		FD024DA0F31F09CA170473A4 /* Pods-SKUIKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SKUIKit.release.xcconfig"; path = "Pods/Target Support Files/Pods-SKUIKit/Pods-SKUIKit.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -87,8 +97,9 @@
 			isa = PBXGroup;
 			children = (
 				E4516A0B203B768D000EED00 /* SKUIKIt.swift */,
-				E42C7FA42054440F001B2593 /* SKUIKitDataSource.swift */,
+				E4BC456520637CCC002AECEB /* Common */,
 				E4516A15203B7EEC000EED00 /* CollectionViews */,
+				E4BC458A2063823B002AECEB /* Navigation */,
 				E43899B1204CB5A700D55336 /* SplashView */,
 				E4516A16203B7EFE000EED00 /* TableViews */,
 			);
@@ -127,6 +138,26 @@
 				E4516A1D203B899E000EED00 /* SKTableViewMenuDataSource.swift */,
 			);
 			path = TableViews;
+			sourceTree = "<group>";
+		};
+		E4BC456520637CCC002AECEB /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				E4FF186C2056383800C94757 /* SKBackgroundView.swift */,
+				E49DCA4B205F8081006DFB43 /* SKThemeManager.swift */,
+				E42C7FA42054440F001B2593 /* SKUIKitDataSource.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		E4BC458A2063823B002AECEB /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				E4BC458B20638271002AECEB /* SKGlobalNavigationViewController.swift */,
+				E4042FD220682AFA008B5546 /* SKGlobalTabBarController.swift */,
+				E4BC458D2063827E002AECEB /* SKDetailNavigationViewController.swift */,
+			);
+			path = Navigation;
 			sourceTree = "<group>";
 		};
 		E4E388F320015600002B1074 = {
@@ -332,12 +363,17 @@
 				E4516A14203B7EB1000EED00 /* SKTableViewMenuController.swift in Sources */,
 				E4F1379B202992B3005211AF /* SKCollectionViewCell.swift in Sources */,
 				E4F1379320298FD6005211AF /* SKTableViewController.swift in Sources */,
+				E4BC458E2063827E002AECEB /* SKDetailNavigationViewController.swift in Sources */,
 				E4516A02203A54DE000EED00 /* SKCollectionViewDataSource.swift in Sources */,
+				E4FF186D2056383800C94757 /* SKBackgroundView.swift in Sources */,
+				E49DCA4C205F8081006DFB43 /* SKThemeManager.swift in Sources */,
+				E4BC458C20638271002AECEB /* SKGlobalNavigationViewController.swift in Sources */,
 				E4516A1C203B87FF000EED00 /* SKCollectionViewMenuDataSource.swift in Sources */,
 				E42C7FA520544410001B2593 /* SKUIKitDataSource.swift in Sources */,
 				E4516A12203B7DEB000EED00 /* SKCollectionViewMenuController.swift in Sources */,
 				E4F13799202991A1005211AF /* SKTableViewCell.swift in Sources */,
 				E4516A0C203B768D000EED00 /* SKUIKIt.swift in Sources */,
+				E4042FD320682AFA008B5546 /* SKGlobalTabBarController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
