@@ -24,7 +24,8 @@ import SKFoundation
     
     // MARK: -- IBOutlets --
     
-    @IBOutlet open weak var imageView: UIImageView?
+    @IBOutlet open weak var backgroundImageView: UIImageView?
+    @IBOutlet open weak var iconImageView: UIImageView?
     @IBOutlet open var loadAction: SKAction?
     
 
@@ -33,7 +34,6 @@ import SKFoundation
     open override func viewDidLoad()
     {
         super.viewDidLoad()
-        log.debug("called and segueName: \(segueName), timeoutDelay: \(timeoutDelay) and has loadAction: \(String(describing: loadAction))")
     }
 
 
@@ -41,6 +41,56 @@ import SKFoundation
     {
         super.viewDidAppear(animated)
         
+        //
+        // If there is a icon UIImageView present
+        //
+        if let iconView = self.iconImageView
+        {
+            //
+            // If it is invisible
+            //
+            if iconView.alpha == 0.0
+            {
+                //
+                // Animate it to visible
+                //
+               UIView.animate(withDuration: 0.75,
+                    animations:
+                    {
+                        iconView.alpha = 1.0
+                    },
+                    
+                    completion: { (completed) in
+                    
+                        //
+                        // Execture loading action, if any
+                        //
+                        self.executeAction()
+                    })
+                
+                return
+            }
+        }
+        
+        //
+        // Execute loading action, if any
+        //
+        self.executeAction()
+    }
+
+
+    open override func didReceiveMemoryWarning()
+    {
+        super.didReceiveMemoryWarning()
+        
+        log.warning("called")
+    }
+    
+    
+    // MARK -- Private --
+    
+    private func executeAction()
+    {
         //
         // If there is a loading action execute that before segue
         //
@@ -66,17 +116,7 @@ import SKFoundation
             self.executeSegue()
         }
     }
-
-
-    open override func didReceiveMemoryWarning()
-    {
-        super.didReceiveMemoryWarning()
-        
-        log.warning("called")
-    }
     
-    
-    // MARK -- Private --
     
     private func executeSegue()
     {

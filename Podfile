@@ -5,13 +5,14 @@ use_frameworks!
 
 target 'SKUIKit' do
 
-    pod 'Alamofire', '~> 4.6'
-    pod 'AlamofireObjectMapper', '~> 5.0'
+    #
+    # SKFoundation and dependent libraries
+    #
+    pod 'SKFoundation'
+    
+    #
+    # SKUIKit-specific libraries
+    #
     pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git'
-    pod 'DeviceKit'
-    pod 'FontAwesome.swift'
-    pod 'Locksmith'
-    pod 'SwiftyBeaver'
-    pod 'SwiftyJSON'
     
 end

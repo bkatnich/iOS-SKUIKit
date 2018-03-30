@@ -35,8 +35,8 @@ open class SKTableViewMenuController: UIViewController
         
         log.debug("called")
         
-        self.dataSource = (SKAbstractTableViewMenuDataSource(
-            tableView: self.tableView!) as SKTableViewMenuDataSource)
+        self.dataSource = (SKAbstractTableViewMenuDataSource(viewController: self)
+            as SKTableViewMenuDataSource)
     }
 
 

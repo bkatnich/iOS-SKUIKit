@@ -3,9 +3,9 @@
 #else
 #ifndef FOUNDATION_EXPORT
 #if defined(__cplusplus)
-FOUNDATION_EXPORT extern "C"
+#define FOUNDATION_EXPORT extern "C"
 #else
-FOUNDATION_EXPORT extern
+#define FOUNDATION_EXPORT extern
 #endif
 #endif
 #endif

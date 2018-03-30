@@ -61,15 +61,11 @@ open class SKAbstractTableViewDataSource<T: SKModel>: NSObject, SKTableViewDataS
         parameters["from"] = startDate
         parameters["to"] = Date()
         
-        log.debug("The generic type is: \(T.self)")
-        
         //
         // Initiate call for new data from the specific 
         //
         T.self.refreshData(parameters: parameters) { (models, error) in
     
-            log.debug("Generic.refreshData called")
-            
             if error != nil
             {
                 log.error(error as Any)

@@ -1,0 +1,6 @@
+framework module SKFoundation {
+  umbrella header "SKFoundation-umbrella.h"
+
+  export *
+  module * { export * }
+}

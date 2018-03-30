@@ -11,7 +11,6 @@
 		E4042FD320682AFA008B5546 /* SKGlobalTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4042FD220682AFA008B5546 /* SKGlobalTabBarController.swift */; };
 		E42C7FA520544410001B2593 /* SKUIKitDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42C7FA42054440F001B2593 /* SKUIKitDataSource.swift */; };
 		E43899B4204CB5D600D55336 /* SKSplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43899B3204CB5D600D55336 /* SKSplashViewController.swift */; };
-		E441EC162055F77A00918ED1 /* SKFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E441EC152055F77A00918ED1 /* SKFoundation.framework */; };
 		E448A9152030230A009C8262 /* SKTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E448A9142030230A009C8262 /* SKTableViewDataSource.swift */; };
 		E4516A02203A54DE000EED00 /* SKCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4516A01203A54DE000EED00 /* SKCollectionViewDataSource.swift */; };
 		E4516A0C203B768D000EED00 /* SKUIKIt.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4516A0B203B768D000EED00 /* SKUIKIt.swift */; };
@@ -39,7 +38,6 @@
 		E4042FD220682AFA008B5546 /* SKGlobalTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKGlobalTabBarController.swift; sourceTree = "<group>"; };
 		E42C7FA42054440F001B2593 /* SKUIKitDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKUIKitDataSource.swift; sourceTree = "<group>"; };
 		E43899B3204CB5D600D55336 /* SKSplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKSplashViewController.swift; sourceTree = "<group>"; };
-		E441EC152055F77A00918ED1 /* SKFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SKFoundation.framework; sourceTree = "<group>"; };
 		E448A9142030230A009C8262 /* SKTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKTableViewDataSource.swift; sourceTree = "<group>"; };
 		E4516A01203A54DE000EED00 /* SKCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		E4516A0B203B768D000EED00 /* SKUIKIt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKUIKIt.swift; sourceTree = "<group>"; };
@@ -69,7 +67,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A9C0DEA17B52F1C75C2DDAF2 /* Pods_SKUIKit.framework in Frameworks */,
-				E441EC162055F77A00918ED1 /* SKFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,7 +160,6 @@
 		E4E388F320015600002B1074 = {
 			isa = PBXGroup;
 			children = (
-				E441EC152055F77A00918ED1 /* SKFoundation.framework */,
 				E4E388FF20015600002B1074 /* SKUIKit */,
 				E4E388FE20015600002B1074 /* Products */,
 				80DEDEFDB4CA8D69D39BB65C /* Pods */,
@@ -321,7 +317,7 @@
 		};
 		E4E3890920015638002B1074 /* Automated Version Incrementing */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
@@ -329,7 +325,7 @@
 			name = "Automated Version Incrementing";
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "# xcode-version-bump.sh\n# @desc Auto-increment the version number (only) when a project is archived for export. \n# @usage\n# 1. Select: your Target in Xcode\n# 2. Select: Build Phases Tab\n# 3. Select: Add Build Phase -> Add Run Script\n# 4. Paste code below in to new \"Run Script\" section\n# 5. Check the checkbox \"Run script only when installing\"\n# 6. Drag the \"Run Script\" below \"Link Binaries With Libraries\"\n# 7. Insure your starting version number is in SemVer format (e.g. 1.0.0)\n\n# This splits a two-decimal version string, such as \"0.45.123\", allowing us to increment the third position.\nVERSIONNUM=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nNEWSUBVERSION=`echo $VERSIONNUM | awk -F \".\" '{print $3}'`\nNEWSUBVERSION=$(($NEWSUBVERSION + 1))\nNEWVERSIONSTRING=`echo $VERSIONNUM | awk -F \".\" '{print $1 \".\" $2 \".'$NEWSUBVERSION'\" }'`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString $NEWVERSIONSTRING\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"";
 		};

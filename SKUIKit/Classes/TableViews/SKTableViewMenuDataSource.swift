@@ -29,21 +29,21 @@ open class SKAbstractTableViewMenuDataSource: NSObject, SKTableViewMenuDataSourc
 {
     // MARK: -- Properties --
     
-    var tableView: UITableView
+    var tableViewMenuController: SKTableViewMenuController
+    var tableView: UITableView?
     
     
     // MARK: -- Lifecycle --
     
-    public init(tableView: UITableView)
+    public init(viewController: SKTableViewMenuController)
     {
-        log.debug("called with tableView: \(tableView)")
-        
-        self.tableView = tableView
+        self.tableViewMenuController = viewController
+        self.tableView = viewController.tableView
         
         super.init()
         
-        self.tableView.dataSource = self
-        self.tableView.delegate = self
+        self.tableView?.dataSource = self
+        self.tableView?.delegate = self
     }
     
     
@@ -51,9 +51,7 @@ open class SKAbstractTableViewMenuDataSource: NSObject, SKTableViewMenuDataSourc
     
     public func reloadData()
     {
-        log.debug("called")
-        
-        self.tableView.reloadData()
+        self.tableView?.reloadData()
     }
     
     
@@ -113,6 +111,18 @@ open class SKAbstractTableViewMenuDataSource: NSObject, SKTableViewMenuDataSourc
         //
         let contentManager = SKContentManager.shared()
         contentManager.currentHolder = holder
+        
+        log.debug("called with holder: \(holder)")
+        
+        //
+        // Segue to next storyboard
+        //
+        if let bundle = Bundle.bundle(forContentHolder: holder)
+        {
+            let storyboard = UIStoryboard(name: holder.storyboardName, bundle: bundle)
+            let vc = storyboard.instantiateViewController(withIdentifier: holder.identifier)
+            self.tableViewMenuController.navigationController!.pushViewController(vc, animated: true)
+        }
     }
     
     
