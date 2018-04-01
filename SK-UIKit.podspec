@@ -1,10 +1,10 @@
 Pod::Spec.new do |s|
-  s.name             = "SK-UIKit"
-  s.version          = "0.2"
-  s.summary          = "SK-UIKit is the base UI framework in SandKatt Solutions Inc.'s iOS application platform."
+  s.name             = "SandKattUIKit"
+  s.version          = "0.3"
+  s.summary          = "SKUIKit is the base UI framework in SandKatt Solutions Inc.'s iOS application platform."
 
   s.description      = <<-DESC
-The SK-UIKit is the base UI framework in SandKatt Solutions Inc.'s iOS application platform..
+The SKUIKit is the base UI framework in SandKatt Solutions Inc.'s iOS application platform..
                        DESC
 
   s.homepage         = "https://github.com/bkatnich/iOS-SKUIKit"
