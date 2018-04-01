@@ -8,7 +8,7 @@ target 'SKUIKit' do
     #
     # SKFoundation and dependent libraries
     #
-    pod 'SKFoundation'
+    pod 'SandKattFoundation'
     
     #
     # SKUIKit-specific libraries

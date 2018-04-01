@@ -1,0 +1,6 @@
+framework module SandKattFoundation {
+  umbrella header "SandKattFoundation-umbrella.h"
+
+  export *
+  module * { export * }
+}
