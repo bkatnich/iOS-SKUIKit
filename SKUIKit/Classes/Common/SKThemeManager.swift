@@ -8,11 +8,10 @@
 
 import UIKit
 import SKFoundation
-import ChameleonFramework
 
 
 /**
- *
+ * SKThemeManager handles the themeing of all UI elements of the application.
  */
 public class SKThemeManager: CustomDebugStringConvertible
 {
@@ -43,7 +42,7 @@ public class SKThemeManager: CustomDebugStringConvertible
                 //
                 // UINavigationBar
                 //
-                if let navigationBarInfo: Dictionary<String, Any> = globalInfo["NavigationBar"] as? Dictionary<String, Any>
+                if let navigationBarInfo: Dictionary<String, Any> = globalInfo[SKComponent.navigationBar.rawValue] as? Dictionary<String, Any>
                 {
                     //
                     // isHidden?
@@ -57,7 +56,7 @@ public class SKThemeManager: CustomDebugStringConvertible
                 //
                 // UIToolBar
                 //
-                if let toolBarInfo: Dictionary<String, Any> = globalInfo["ToolBar"] as? Dictionary<String, Any>
+                if let toolBarInfo: Dictionary<String, Any> = globalInfo[SKComponent.toolBar.rawValue] as? Dictionary<String, Any>
                 {
                     //
                     // isHidden?
@@ -93,7 +92,7 @@ public class SKThemeManager: CustomDebugStringConvertible
                 //
                 // UITabBar
                 //
-                if let tabBarInfo: Dictionary<String, Any> = globalInfo["TabBar"] as? Dictionary<String, Any>
+                if let tabBarInfo: Dictionary<String, Any> = globalInfo[SKComponent.tabBar.rawValue] as? Dictionary<String, Any>
                 {
                     //
                     // isHidden?
@@ -119,7 +118,7 @@ public class SKThemeManager: CustomDebugStringConvertible
             //
             // UINavigationBar
             //
-            if let navigationBarInfo: Dictionary<String, Any> = detailInfo["NavigationBar"] as? Dictionary<String, Any>
+            if let navigationBarInfo: Dictionary<String, Any> = detailInfo[SKComponent.navigationBar.rawValue] as? Dictionary<String, Any>
             {
                 //
                 // isHidden?
@@ -133,7 +132,7 @@ public class SKThemeManager: CustomDebugStringConvertible
             //
             // UIToolBar
             //
-            if let toolBarInfo: Dictionary<String, Any> = detailInfo["ToolBar"] as? Dictionary<String, Any>
+            if let toolBarInfo: Dictionary<String, Any> = detailInfo[SKComponent.toolBar.rawValue] as? Dictionary<String, Any>
             {
                 //
                 // isHidden?
@@ -200,7 +199,225 @@ public class SKThemeManager: CustomDebugStringConvertible
     }
     
     
+    // MARK: -- Component Themes --
+    
+    /**
+     * Background view component theme.
+     */
+    private func theme(backgroundView info:Dictionary<String, Any>)
+    {
+        log.debug("called for background view")
+        
+        //
+        // View-specific: if in an enclosing dictionary with 'View' element
+        //
+        if let subInfo: Dictionary<String, Any> = info["View"] as? Dictionary<String, Any>
+        {
+            if let backgroundColor: String = subInfo["backgroundColor"] as? String
+            {
+                log.debug("View backgroundColor: \(backgroundColor)")
+                
+                self.viewBackgroundColor = UIColor.darkGray//self.color(from: backgroundColor)
+            }
+        }
+        
+        //
+        // Global: else if the top dictionary with 'backgroundColor' element
+        //
+        else if let backgroundColor: String = info["backgroundColor"] as? String
+        {
+            log.debug("Global backgroundColor: \(backgroundColor)")
+            
+            self.viewBackgroundColor = UIColor.darkGray//self.color(from: backgroundColor)
+        }
+    }
+    
+    
+    /**
+     * NavigationBar component theme.
+     */
+    private func theme(navBar info:Dictionary<String, Any>)
+    {
+        log.debug("called for navBar")
+        
+        //
+        // Find a background color for this component
+        //
+        if let backgroundColor: String = self.findComponentBackgroundColor(
+            info: info,
+            component: SKComponent.navigationBar)
+        {
+            //
+            // Clear color
+            //
+            if SKColor.isClear(colorName: backgroundColor)
+            {
+                UINavigationBar.clearTheme()
+            }
+            
+            //
+            // Any other color
+            //
+            else
+            {
+                UINavigationBar.appearance().barTintColor = UIColor.blue
+                UINavigationBar.appearance().tintColor = UIColor.white
+            }
+        }
+        
+        //
+        // None found
+        //
+        else
+        {
+            UINavigationBar.appearance().barTintColor = UIColor.red
+            UINavigationBar.appearance().tintColor = UIColor.green
+        }
+    }
+    
+    
+    /**
+     * TabBar component theme.
+     */
+    private func theme(tabBar info:Dictionary<String, Any>)
+    {
+        log.debug("called for tabBar")
+        
+        //
+        // Find a background color for this component
+        //
+        if let backgroundColor: String = self.findComponentBackgroundColor(
+            info: info,
+            component: SKComponent.tabBar)
+        {
+            log.debug("TabBar backgroundColor is: \(backgroundColor)")
+            
+            //
+            // Clear color
+            //
+            if SKColor.isClear(colorName: backgroundColor)
+            {
+                UITabBar.clearTheme()
+            }
+            
+            //
+            // Any other color
+            //
+            else
+            {
+                UITabBar.appearance().barTintColor = UIColor.blue
+                UITabBar.appearance().tintColor = UIColor.white
+            }
+        }
+        
+        //
+        // None found
+        //
+        else
+        {
+            UITabBar.appearance().barTintColor = UIColor.red
+            UITabBar.appearance().tintColor = UIColor.green
+        }
+    }
+    
+    
+    /**
+     * ToolBar component theme.
+     */
+    private func theme(toolBar info:Dictionary<String, Any>)
+    {
+        log.debug("called for toolbar")
+        
+        //
+        // Find a background color for this component
+        //
+        if let backgroundColor: String = self.findComponentBackgroundColor(
+            info: info,
+            component: SKComponent.toolBar)
+        {
+            //
+            // Clear color
+            //
+            if SKColor.isClear(colorName: backgroundColor)
+            {
+                UIToolbar.clearTheme()
+            }
+            
+            //
+            // Any other color
+            //
+            else
+            {
+                UIToolbar.appearance().barTintColor = UIColor.blue
+                UIToolbar.appearance().tintColor = UIColor.white
+            }
+        }
+        
+        //
+        // None found
+        //
+        else
+        {
+            UIToolbar.appearance().barTintColor = UIColor.red
+            UIToolbar.appearance().tintColor = UIColor.green
+        }
+    }
+    
+    
     // MARK: -- Private --
+    
+    /**
+     *
+     */
+    private func findComponentBackgroundColor(info:Dictionary<String, Any>, component: SKComponent) -> String?
+    {
+        let componentName = component.rawValue
+        
+        log.debug("called for \(componentName)")
+        
+        //
+        // Component-specific: if in an enclosing dictionary with key matching 'componentName'
+        //
+        if let subInfo: Dictionary<String, Any> = info[componentName] as? Dictionary<String, Any>
+        {
+            log.debug("found subInfo for \(componentName)")
+            
+            //
+            // Specific background color
+            //
+            if let backgroundColor: String = subInfo["backgroundColor"] as? String
+            {
+                log.debug("\(componentName) backgroundColor: \(backgroundColor)")
+                
+                return backgroundColor
+            }
+            
+            //
+            // Global: else if the top dictionary with 'backgroundColor' element
+            //
+            else if let backgroundColor: String = info["backgroundColor"] as? String
+            {
+                log.debug("Global backgroundColor: \(backgroundColor)")
+        
+                return backgroundColor
+            }
+        }
+        
+        //
+        // Global: else if the top dictionary with 'backgroundColor' element
+        //
+        else if let backgroundColor: String = info["backgroundColor"] as? String
+        {
+            log.debug("Global backgroundColor: \(backgroundColor)")
+            
+            return backgroundColor
+        }
+        
+        log.debug("No set background Color")
+        
+        return nil
+    }
+    
     
     /**
      *
@@ -237,7 +454,7 @@ public class SKThemeManager: CustomDebugStringConvertible
         //
         // Global Theme
         //
-        return self.themeInfo["Global"] as? Dictionary<String, Any>
+        return self.themeInfo[SKComponent.global.rawValue] as? Dictionary<String, Any>
     }
     
     
@@ -261,105 +478,152 @@ public class SKThemeManager: CustomDebugStringConvertible
         //
         // Global Theme
         //
-        if let globalInfo: Dictionary<String, Any> = self.themeInfo["Global"] as? Dictionary<String, Any>
+        if let globalInfo: Dictionary<String, Any> = self.themeInfo[SKComponent.global.rawValue] as? Dictionary<String, Any>
         {
-            let globalColor: String = globalInfo["backgroundColor"] as! String
-            let globalFont: String = globalInfo["font"] as! String
+            // Main view
+            self.theme(backgroundView: globalInfo)
             
-            //
-            // Chameleon
-            //
-            Chameleon.setGlobalThemeUsingPrimaryColor(self.color(from: globalColor),
-                withSecondaryColor: self.color(from: globalColor),
-                usingFontName: globalFont,
-                andContentStyle: UIContentStyle.contrast)
-
-            //
-            // UITabBar must be done separately
-            //
-            UITabBar.appearance().barTintColor = UINavigationBar.appearance().barTintColor
-            UITabBarItem.appearance().setTitleTextAttributes(
-                [NSAttributedStringKey.foregroundColor:UINavigationBar.appearance().tintColor],
-                for: UIControlState.normal)
+            // NavigationBar
+            self.theme(navBar: globalInfo)
             
-            //
-            // Views
-            //
-            if let viewInfo: Dictionary<String, Any> = globalInfo["View"] as? Dictionary<String, Any>
-            {
-                if let viewBackgroundColor: String = viewInfo["backgroundColor"] as? String
-                {
-                    self.viewBackgroundColor = self.color(from: viewBackgroundColor)
-                }
-            }
+            // TabBar
+            self.theme(tabBar: globalInfo)
+        
+            // ToolBar
+            self.theme(toolBar: globalInfo)
         }
     }
     
     
-    private func color(from: String) -> UIColor
+    /**
+     * Retrieve a UIColor based on the 'colorName' parameter.
+     *
+     * @param colorName String.
+     * @returns UIColor if valid text, nil if not.
+     */
+    private func color(colorName: String) -> UIColor?
     {
-        let colorValue: SKColor = SKColor(rawValue: from)!
-    
-        switch colorValue
+        //
+        // If valid colorValue found
+        //
+        if let colorValue: SKColor = SKColor(rawValue: colorName)
         {
-            case SKColor.Clear: return UIColor.clear
-            case SKColor.FlatBlack: return FlatBlack()
-            case SKColor.FlatBlue: return FlatBlue()
-            case SKColor.FlatBrown: return FlatBrown()
-            case SKColor.FlatCoffee: return FlatCoffee()
-            case SKColor.FlatForestGreen: return FlatForestGreen()
-            case SKColor.FlatGray: return FlatGray()
-            case SKColor.FlatGreen: return FlatGreen()
-            case SKColor.FlatLime: return FlatLime()
-            case SKColor.FlatMagenta: return FlatMagenta()
-            case SKColor.FlatMaroon: return FlatMaroon()
-            case SKColor.FlatMint: return FlatMint()
-            case SKColor.FlatNavyBlue: return FlatNavyBlue()
-            case SKColor.FlatOrange: return FlatOrange()
-            case SKColor.FlatPink: return FlatPink()
-            case SKColor.FlatPlum: return FlatPlum()
-            case SKColor.FlatPowderBlue: return FlatPowderBlue()
-            case SKColor.FlatPurple: return FlatPurple()
-            case SKColor.FlatRed: return FlatRed()
-            case SKColor.FlatSand: return FlatSand()
-            case SKColor.FlatSkyBlue: return FlatSkyBlue()
-            case SKColor.FlatTeal: return FlatTeal()
-            case SKColor.FlatWatermelon: return FlatWatermelon()
-            case SKColor.FlatWhite: return FlatWhite()
-            case SKColor.FlatYellow: return FlatYellow()
+            switch colorValue
+            {
+                case SKColor.Clear: return UIColor.clear
+            }
         }
+        
+        //
+        // Else no valid color value found
+        //
+        else { return nil }
+    }
+}
+
+
+extension UINavigationBar
+{
+    /**
+     * The clear theme for a UINavigationBar.
+     */
+    public static func clearTheme()
+    {
+        log.debug("NavigationBar called")
+        
+        UINavigationBar.appearance().backgroundColor = UIColor.clear
+        UINavigationBar.appearance().setBackgroundImage(
+            UIImage(),
+            for: .default)
+        UINavigationBar.appearance().barTintColor = UIColor.clear
+        UINavigationBar.appearance().tintColor = UIColor.white
+        UINavigationBar.appearance().shadowImage = UIImage()
+        UINavigationBar.appearance().isTranslucent = true
+ 
+        UINavigationBar.appearance().titleTextAttributes =
+        [
+            NSAttributedStringKey.foregroundColor : UIColor.white
+        ]
+    }
+}
+
+
+extension UITabBar
+{
+    /**
+     * The clear theme for a UITabBar.
+     */
+    public static func clearTheme()
+    {
+        log.debug("TabBar called")
+        
+        UITabBar.appearance().backgroundColor = UIColor.clear
+        UITabBar.appearance().backgroundImage = UIImage()
+        UITabBar.appearance().barTintColor = UIColor.clear
+        UITabBar.appearance().tintColor = UIColor.white
+        UITabBar.appearance().shadowImage = UIImage()
+        UITabBar.appearance().isTranslucent = true
+        
+        UITabBarItem.appearance().setTitleTextAttributes(
+            [NSAttributedStringKey.foregroundColor:UIColor.white],
+            for: UIControlState.normal)
+    }
+}
+
+
+extension UIToolbar
+{
+    /**
+     * The clear theme for a UIToolbar.
+     */
+    public static func clearTheme()
+    {
+        log.debug("Toolbar called")
+        
+        UIToolbar.appearance().backgroundColor = UIColor.clear
+        UIToolbar.appearance().barTintColor = UIColor.clear
+        UIToolbar.appearance().tintColor = UIColor.white
+        UIToolbar.appearance().isTranslucent = true
+        UIToolbar.appearance().clipsToBounds = true
+        UIToolbar.appearance().setBackgroundImage(
+            UIImage(),
+            forToolbarPosition: UIBarPosition.any,
+            barMetrics:  UIBarMetrics.default)
+        UIToolbar.appearance().setShadowImage(
+            UIImage(),
+            forToolbarPosition: UIBarPosition.any)
     }
 }
 
 
 /**
- * SKUIKit theme colors.
+ * SKUIKit component enumeration.
+ */
+public enum SKComponent: String
+{
+    case backgroundView = "BackgroundView"
+    case global = "Global"
+    case navigationBar = "NavigationBar"
+    case tabBar = "TabBar"
+    case toolBar = "ToolBar"
+}
+
+
+/**
+ * SKUIKit color enumeration.
  */
 public enum SKColor: String
 {
     case Clear = "Clear"
-    case FlatBlack = "FlatBlack"
-    case FlatBlue = "FlatBlue"
-    case FlatBrown = "FlatBrown"
-    case FlatCoffee = "FlatCoffee"
-    case FlatForestGreen = "FlatForestGreen"
-    case FlatGray = "FlatGray"
-    case FlatGreen = "FlatGreen"
-    case FlatLime = "FlatLime"
-    case FlatMagenta = "FlatMagenta"
-    case FlatMaroon = "FlatMaroon"
-    case FlatMint = "FlatMint"
-    case FlatNavyBlue = "FlatNavyBlue"
-    case FlatOrange = "FlatOrange"
-    case FlatPink = "FlatPink"
-    case FlatPlum = "FlatPlum"
-    case FlatPowderBlue = "FlatPowderBlue"
-    case FlatPurple = "FlatPurple"
-    case FlatRed = "FlatRed"
-    case FlatSand = "FlatSand"
-    case FlatSkyBlue = "FlatSkyBlue"
-    case FlatTeal = "FlatTeal"
-    case FlatWatermelon = "FlatWatermelon"
-    case FlatWhite = "FlatWhite"
-    case FlatYellow = "FlatYellow"
+    
+    /**
+     * Determine if parameter 'colorName' indicates clear color.
+     *
+     * @param colorName String.
+     * @returns True if clear, false if not.
+     */
+    public static func isClear(colorName: String) -> Bool
+    {
+        return colorName == SKColor.Clear.rawValue
+    }
 }

@@ -13,6 +13,6 @@ target 'SKUIKit' do
     #
     # SKUIKit-specific libraries
     #
-    pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git'
+    pod 'Hue'
     
 end
