@@ -17,7 +17,7 @@ The SKUIKit is the base UI framework in SandKatt Solutions Inc.'s iOS applicatio
 
   s.swift_version = "4.0"
 
-  s.dependency "SKFoundation"
+  s.dependency "SandKattFoundation"
   s.dependency "Hue"
 
 end
