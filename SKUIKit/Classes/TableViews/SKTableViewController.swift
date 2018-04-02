@@ -32,8 +32,6 @@ open class SKTableViewController: UIViewController
     open override func viewDidLoad()
     {
         super.viewDidLoad()
-        
-        log.debug("called")
     }
 
 
