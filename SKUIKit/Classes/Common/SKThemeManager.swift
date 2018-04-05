@@ -270,6 +270,42 @@ public class SKThemeManager: CustomDebugStringConvertible
     
     
     /**
+     * BarButtonItem component theme.
+     */
+    private func theme(barButtonItem info:Dictionary<String, Any>)
+    {
+        //
+        // Find font for this component
+        //
+        if let font: UIFont = self.findComponentFont(
+            info: info,
+            component: SKComponent.barButtonItem)
+        {
+            //
+            // Add font to attributes
+            //
+            var attributes: Dictionary<NSAttributedStringKey, Any> =
+            [
+                NSAttributedStringKey.font : font
+            ]
+            
+            //
+            // Add optional foreground color
+            //
+            if let foregroundColor = info["foregroundColor"] as? String
+            {
+                attributes[NSAttributedStringKey.foregroundColor] = foregroundColor
+            }
+            
+            //
+            // Set appearance
+            //
+            UIBarButtonItem.appearance().setTitleTextAttributes(attributes, for: .normal)
+        }
+    }
+    
+    
+    /**
      * NavigationBar component theme.
      */
     private func theme(navBar info:Dictionary<String, Any>)
@@ -732,6 +768,7 @@ extension UIToolbar
 public enum SKComponent: String
 {
     case backgroundView = "BackgroundView"
+    case barButtonItem = "BarButtonItem"
     case global = "Global"
     case navigationBar = "NavigationBar"
     case tabBar = "TabBar"
