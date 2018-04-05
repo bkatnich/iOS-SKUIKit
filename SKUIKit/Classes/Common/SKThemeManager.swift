@@ -319,7 +319,8 @@ public class SKThemeManager: CustomDebugStringConvertible
         {
             UINavigationBar.appearance().titleTextAttributes =
             [
-                NSAttributedStringKey.font : font
+                NSAttributedStringKey.font : font,
+                NSAttributedStringKey.foregroundColor : UIColor.white
             ]
         }
     }
@@ -372,7 +373,7 @@ public class SKThemeManager: CustomDebugStringConvertible
         //
         if let font: UIFont = self.findComponentFont(
             info: info,
-            component: SKComponent.navigationBar)
+            component: SKComponent.tabBar)
         {
             UITabBarItem.appearance().setTitleTextAttributes(
                 [
@@ -423,6 +424,20 @@ public class SKThemeManager: CustomDebugStringConvertible
         // None found
         //
         else { log.warning("No color value found, using storyboard defaults") }
+        
+        //
+        // Find font for this component
+        //
+        if let font: UIFont = self.findComponentFont(
+            info: info,
+            component: SKComponent.toolBar)
+        {
+            UIBarButtonItem.appearance().setTitleTextAttributes(
+                [
+                    NSAttributedStringKey.font : font
+                ],
+                for: UIControlState.normal)
+        }
     }
     
     
