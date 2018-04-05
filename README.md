@@ -12,6 +12,7 @@
     <img src="https://img.shields.io/badge/Swift-4.0-brightgreen.svg" alt="Swift 4.0"/>
     <img src="https://img.shields.io/badge/Xcode-9%2B-brightgreen.svg" alt="XCode 9+"/>
     <img src="https://img.shields.io/badge/licence-MIT-blue.svg" alt="Licence MIT"/>
+    <img src="https://travis-ci.org/bkatnich/iOS-SKUIKit.svg?branch=master" href="https://travis-ci.org/bkatnich/iOS-SKUIKit" alt="Build Status"/>
 </p>
 
 
