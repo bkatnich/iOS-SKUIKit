@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "SandKattUIKit"
-  s.version          = "0.4"
+  s.version          = "0.5"
   s.summary          = "SKUIKit is the base UI framework in SandKatt Solutions Inc.'s iOS application platform."
 
   s.description      = <<-DESC
@@ -15,7 +15,7 @@ The SKUIKit is the base UI framework in SandKatt Solutions Inc.'s iOS applicatio
   s.ios.deployment_target = "11.0"
   s.source_files = "SKUIKit/**/*"
 
-  s.swift_version = "4.0"
+  s.swift_version = "4.1"
 
   s.dependency "SandKattFoundation"
   s.dependency "Hue"
