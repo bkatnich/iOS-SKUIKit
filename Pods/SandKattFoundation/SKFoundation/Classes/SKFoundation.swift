@@ -22,7 +22,6 @@ public class SKFoundation
     static let network = SKNetwork.shared()
     static let content = SKContentManager.shared()
     
-    
     // MARK: Lifecycle
     
     /**
@@ -124,7 +123,7 @@ public class SKFoundation
             }
         }
 
-        allClasses.deallocate(capacity: Int(expectedClassCount))
+        allClasses.deallocate()
     }
 }
 

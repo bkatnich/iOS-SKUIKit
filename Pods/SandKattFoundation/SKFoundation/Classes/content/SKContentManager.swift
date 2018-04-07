@@ -170,7 +170,7 @@ public class SKContentManager: CustomDebugStringConvertible
         //
         self.contentHolders = self.contentHolders.sorted(by: { $0.priority < $1.priority })
         
-        allClasses.deallocate(capacity: Int(expectedClassCount))
+        allClasses.deallocate()
         
         //
         // Notify interested observers
