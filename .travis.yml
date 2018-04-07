@@ -1,3 +1,7 @@
 language: swift
+<<<<<<< HEAD
 osx_image: xcode9.3beta
+=======
+osx_image: xcode9
+>>>>>>> parent of 23aeb71... TravisCI
 script: xcodebuild -workspace SKUIKit.xcworkspace -scheme SKUIKit -sdk iphonesimulator11.0 -destination 'platform=iOS Simulator,OS=11.0,name=iPhone 8' -configuration Debug build
