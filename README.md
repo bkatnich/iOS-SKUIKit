@@ -8,9 +8,9 @@
              alt="Pods Version">
     </a>
     <img src="https://img.shields.io/badge/platform-iOS-brightgreen.svg" alt="Platform: iOS"/>
-    <img src="https://img.shields.io/badge/iOS-11%2B-brightgreen.svg" alt="iOS 11.0"/>
-    <img src="https://img.shields.io/badge/Swift-4.0-brightgreen.svg" alt="Swift 4.1"/>
-    <img src="https://img.shields.io/badge/Xcode-9%2B-brightgreen.svg" alt="XCode 9.3"/>
+    <img src="https://img.shields.io/badge/iOS-11.0-brightgreen.svg" alt="iOS 11.0"/>
+    <img src="https://img.shields.io/badge/Swift-4.1-brightgreen.svg" alt="Swift 4.1"/>
+    <img src="https://img.shields.io/badge/Xcode-9.3-brightgreen.svg" alt="XCode 9.3"/>
     <img src="https://img.shields.io/badge/licence-MIT-blue.svg" alt="Licence MIT"/>
     <img src="https://travis-ci.org/bkatnich/iOS-SKUIKit.svg?branch=master" href="https://travis-ci.org/bkatnich/iOS-SKUIKit" alt="Build Status"/>
 </p>
