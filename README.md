@@ -23,9 +23,9 @@ Coming Soon
 
 ## Requirements
 
-- Xcode 9.0+
-- iOS 11.0+
-- Swift 4.0
+- Xcode 9.3
+- iOS 11.0
+- Swift 4.1
 
 
 ## Installation
