@@ -1,7 +1,11 @@
 language: swift
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 osx_image: xcode9.3beta
+=======
+osx_image: xcode9
+>>>>>>> parent of 23aeb71... TravisCI
 =======
 osx_image: xcode9
 >>>>>>> parent of 23aeb71... TravisCI
