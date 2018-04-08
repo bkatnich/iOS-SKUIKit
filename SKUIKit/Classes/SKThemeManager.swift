@@ -229,6 +229,15 @@ public class SKThemeManager: CustomDebugStringConvertible
                     UIColor.white : UIColor.black
             }
             
+            //
+            // Title Text Attributes
+            //
+            UINavigationBar.appearance().titleTextAttributes =
+            [
+                NSAttributedStringKey.foregroundColor : color.isDark ?
+                    UIColor.white : UIColor.black
+            ]
+            
         } else { log.warning("No bar color theming found") }
     }
     
