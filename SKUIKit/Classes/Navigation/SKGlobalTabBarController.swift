@@ -24,7 +24,7 @@ open class SKGlobalTabBarController: UITabBarController
         //
         // Register with the ThemeManager
         //
-        SKThemeManager.shared().globalTabBarController = self
+        SKThemeManager.shared.globalTabBarController = self
     }
 
 

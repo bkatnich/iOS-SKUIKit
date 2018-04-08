@@ -1,32 +1,226 @@
 //
-//  SKRouter.swift
+//  SKNetworkManager.swift
 //  SKFoundation
 //
-//  Created by Britton Katnich on 2017-04-19.
+//  Created by Britton Katnich on 2017-11-28.
 //  Copyright © 2017 SandKatt Solutions Inc. All rights reserved.
 //
 
-import UIKit
+import Foundation
 import Alamofire
 
 
 /**
- * The HTTP router engine wraper that manages all external network calls.
+ * SKNetwork contains necessary network related configuration values the
+ * application needs to configure itself locally and make remote calls.
+ *
+ * The remote, base URL and it's components parts can be retrieved for example.
  */
-public class SKRouter: NSObject
+public class SKNetworkManager : CustomDebugStringConvertible
 {
-    // MARK: Lifecycle
+    // MARK: -- Properties
+
+    /**
+     *
+     */
+    static let shared =  SKNetworkManager()
     
     /**
-     * Private init method to enforce inability to instantiate.
+     *
      */
-    private override init()
+    private var networkManager: NetworkReachabilityManager?
+    
+    /**
+     * Retrieve if the network connection to the baseURL is reachable, or not.
+     *
+     * @return True if so, false if not.
+     */
+    public var isReachable: Bool
     {
-        // do nothing
+        get
+        {
+            //
+            // If a manager based on the base url was established
+            //
+            if let manager = self.networkManager
+            {
+                //
+                // Ask the manager for the current network state
+                //
+                return manager.isReachable
+            
+            //
+            // Else no valid manager was instantiated
+            //
+            } else { return false }
+        }
+    }
+    
+    /**
+     * Retrieve the base url with the contained URL components in the format: <scheme>://<host>:<port>.
+     *
+     * @returns URL
+     */
+    public var baseUrl: URL?
+    {
+        get
+        {
+            if self.host.isEmpty || self.port.isEmpty
+            {
+                return nil
+            }
+        
+            let path = String(self.host + ":" + self.port)
+            let url = URL(string: path)
+        
+            return url
+        }
+    }
+    
+    /**
+     *
+     */
+    public var host: String
+    {
+        get
+        {
+            if let networkInfo = SKFoundation.configurationInfo["Network"] as? Dictionary<String, Any>
+            {
+                if let value = networkInfo["host"] as? String
+                {
+                    return value
+                }
+            }
+            
+            return ""
+        }
+    }
+    
+    /**
+     *
+     */
+    public var port: String
+    {
+        get
+        {
+            if let networkInfo = SKFoundation.configurationInfo["Network"] as? Dictionary<String, Any>
+            {
+                if let value = networkInfo["port"] as? String
+                {
+                    return value
+                }
+            }
+            
+            return ""
+        }
+    }
+    
+    /**
+     *
+     */
+    public var timeoutIntervalForRequest: Double
+    {
+        get
+        {
+            if let networkInfo = SKFoundation.configurationInfo["Network"] as? Dictionary<String, Any>
+            {
+                if let value = networkInfo["timeoutIntervalForRequest"] as? Double
+                {
+                    return value
+                }
+            }
+            
+            return 10
+        }
+    }
+    
+    /**
+     *
+     */
+    public var timeoutIntervalForResource: Double
+    {
+        get
+        {
+            if let networkInfo = SKFoundation.configurationInfo["Network"] as? Dictionary<String, Any>
+            {
+                if let value = networkInfo["timeoutIntervalForResource"] as? Double
+                {
+                    return value
+                }
+            }
+            
+            return 10
+        }
+    }
+    
+    /**
+     * The debug string.
+     */
+    public var debugDescription : String
+    {
+        let desc: String = "host: \(host)\n" +
+            "port: \(port)\n" +
+            "timeoutIntervalForRequest: \(timeoutIntervalForRequest)\n" +
+            "timeoutIntervalForResource: \(timeoutIntervalForResource)"
+        
+        return desc
+    }
+    
+    
+    // MARK: -- Lifecycle --
+    
+    /**
+     * Private initializer to enforce singleton behaviour.
+     */
+    private init()
+    {
+       log.debug("called")
+    }
+
+
+    // MARK: -- Public
+    
+    /**
+     *
+     */
+    public func startListening()
+    {
+        log.debug("called")
+        
+        guard let baseUrl = SKNetworkManager.shared.baseUrl?.absoluteString
+        else
+        {
+            log.warning("no base URL found")
+            
+            return
+        }
+        
+        log.debug("found base url: \(baseUrl)")
+        
+        self.networkManager = NetworkReachabilityManager(host: baseUrl)
+        self.networkManager?.listener = { status in
+        
+            log.debug("Network: \(baseUrl) status change heard: \(status)")
+            
+            //
+            // Notify interested observers
+            //
+            NotificationCenter.default.post(name: .NetworkStatusChanged, object: nil)
+        }
+        self.networkManager?.startListening()
+    }
+    
+    /**
+     *
+     */
+    public func stopListening()
+    {
+        self.networkManager?.stopListening()
+        self.networkManager = nil
     }
     
  
-    // MARK: Public
+    // MARK: HTTP Requests
     
     /**
      *  HTTP DELETE network calls.
@@ -126,26 +320,25 @@ public class SKRouter: NSObject
      */
     public class func getAsDictionary(url: String, completion: @escaping DictionaryCompletionHandler)
     {
-        log.debug("called with url path: \(url) and base url is: \(String(describing: SKNetwork.shared().baseUrl()))")
+        //log.debug("called with url path: \(url) and base url is: \(String(describing: SKNetwork.shared().baseUrl))")
         
         //
         // Create full url
         //
-        guard let baseUrl = SKNetwork.shared().baseUrl()?.absoluteString
+        guard let baseUrl = SKNetworkManager.shared.baseUrl?.absoluteString
         else
         {
             let error: SKError = SKError.networkUrlNotConstructed(url)
-            
+         
             //
             // Execute completion block
             //
             completion(nil, error)
-            
+         
             return
         }
         
         let fullUrl = baseUrl + url
-        log.debug("full url: \(fullUrl)")
         
         //
         // Execute GET request with default validation (HTTP Codes 200-299)
@@ -161,9 +354,9 @@ public class SKRouter: NSObject
                 // Success (200-299)
                 //
                 case .success:
-                
+         
                     //log.debug("Success heard: " + String(describing:response.result))
-                    
+         
                     //
                     // Dictionary case
                     //
@@ -172,23 +365,23 @@ public class SKRouter: NSObject
                         completion(info, nil)
                         return
                     }
-                    
+         
                     break
         
                 //
                 // Failure (everything else)
                 //
                 case .failure(let error):
-                
+         
                     let error: SKError = SKError.apiCallFailed(
                         title: error.localizedDescription,
                         detail: String(data: (response.data)!, encoding: .utf8)!)
-                    
+         
                     //
                     // Execute completion block
                     //
                     completion(nil, error)
-                    
+         
                     break
             }
         }
@@ -375,3 +568,4 @@ public class SKRouter: NSObject
         }
     }
 }
+

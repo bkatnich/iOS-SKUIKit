@@ -17,7 +17,7 @@ public class SKUIKit: SKFramework
 {
     // MARK: Properties
     
-    static let themeManager = SKThemeManager.shared()
+    static let themeManager = SKThemeManager.shared
     
     
     // MARK: Lifecycle

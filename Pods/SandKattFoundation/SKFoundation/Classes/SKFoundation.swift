@@ -19,8 +19,9 @@ public class SKFoundation
 {
     // MARK: Properties
     
-    static let network = SKNetwork.shared()
-    static let content = SKContentManager.shared()
+    public static var configurationInfo = SKFoundation.findConfiguration()
+    static var siblingFrameworks = SKFoundation.findSiblingFrameworks()
+    
     
     // MARK: Lifecycle
     
@@ -37,10 +38,7 @@ public class SKFoundation
         console.format = "$DHH:mm:ss$d $N.$F():$l $L: $M"
         log.addDestination(console)
         
-        //
-        // Locate any further SKFrameworks and start them.
-        //
-        self.findSiblingFrameworks()
+        SKNetworkManager.shared.startListening()
         
         //
         // Log startup state
@@ -49,8 +47,6 @@ public class SKFoundation
     }
     
     
-    // MARK: Lifecycle
-    
     /**
      * Retrieve the current debug values in a formatted String.
      *
@@ -58,19 +54,22 @@ public class SKFoundation
      */
     public static func debugStatus() -> String
     {
+        let configurationData = try! JSONSerialization.data(withJSONObject: self.configurationInfo, options: [.prettyPrinted])
+        let configurationDecoded = String(data: configurationData, encoding: .utf8)!
+        
         //
         // Log startup state
         //
         let debugStatus =
             "-- Application --" +
-            "\n\nname: " + Bundle.main.appName() +
-            "\nversion: " + Bundle.main.versionAndBuildNumber() +
-            "\nbuild date: " + Bundle.main.buildDate() +
-            "\norganization: " + Bundle.main.organization() +
-            
-            "\n\n-- Network --\n\n" + network.debugDescription +
-            
-            "\n\n\n-- Content --\n\n" + content.debugDescription
+            "\n\nname: " + Bundle.appName() +
+            "\nversion: " + Bundle.versionAndBuildNumber() +
+            "\nbuild date: " + Bundle.buildDate() +
+            "\norganization: " + Bundle.organization() +
+
+            "\n\n-- Sibling Frameworks --\n\n" + String(describing: self.siblingFrameworks) +
+
+            "\n\n-- Configuration --\n\n" + configurationDecoded
         
         return debugStatus
     }
@@ -79,11 +78,29 @@ public class SKFoundation
     // MARK: -- Private --
     
     /**
-     *
+     * Retrieve the master configuration.
      */
-    private static func findSiblingFrameworks()
+    private static func findConfiguration() -> Dictionary<String, Any>
     {
-        //log.debug("called")
+        //
+        // Find the SandKatt configuration values, if they exist
+        //
+        if let info = Bundle.main.object(forInfoDictionaryKey: "SandKatt") as? [String : Any]
+        {
+            return info
+        
+        } else { log.warning("no SandKatt entry found") }
+        
+        return Dictionary<String, Any>()
+    }
+    
+    
+    /**
+     * Retrieve any sibiling SandKatt frameworks in the application runtime.
+     */
+    private static func findSiblingFrameworks() -> Array<SKFramework.Type>
+    {
+        var frameworks = Array<SKFramework.Type>()
         
         //
         // Obtain all class information
@@ -93,8 +110,6 @@ public class SKFoundation
         let autoreleasingAllClasses = AutoreleasingUnsafeMutablePointer<AnyClass>(allClasses)
         let actualClassCount:Int32 = objc_getClassList(autoreleasingAllClasses, expectedClassCount)
 
-        //log.debug("actual class count: \(actualClassCount)")
-    
         //
         // Iterate all discovered classes
         //
@@ -105,25 +120,25 @@ public class SKFoundation
             //
             if let currentClass: AnyClass = allClasses[Int(i)]
             {
-                //log.debug("retrieved class: \(currentClass)")
-                    
                 //
                 // Detect if the class comforms to the protocol
                 //
                 if class_conformsToProtocol(currentClass, SKFramework.self)
                 {
-                    //log.debug("found conforming class: \(currentClass)")
-                    
                     //
                     // Start the framework
                     //
                     let framework: SKFramework.Type = currentClass as! SKFramework.Type
                     framework.start()
+                    
+                    frameworks.append(framework)
                 }
             }
         }
 
         allClasses.deallocate()
+        
+        return frameworks
     }
 }
 
@@ -171,7 +186,7 @@ public extension Bundle
      */
     public class func bundle(named: String) -> Bundle?
     {
-        return Bundle(identifier: Bundle.main.prefix(append: named))
+        return Bundle(identifier: Bundle.prefix(append: named))
     }
     
     
@@ -197,29 +212,11 @@ public extension Bundle
     // MARK: -- Main Bundle Additions --
     
     /**
-     * Retrieve the Root dictionary info from the main bundle plist.
-     *
-     * By default, if no "Root" entry is found it will return an empty dictionary.
-     *
-     * @returns [String, Any]
-     */
-    func rootInfo() -> [String : Any]
-    {
-        if let info = Bundle.main.object(forInfoDictionaryKey: "Root") as? [String : Any]
-        {
-            return info
-        }
-        
-        return [String: Any]()
-    }
-
-
-    /**
      * Retrieve the app name.
      *
      * @returns String
      */
-    func appName() -> String
+    static func appName() -> String
     {
         return Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as! String
     }
@@ -230,9 +227,9 @@ public extension Bundle
      *
      * @returns String
      */
-    func buildDate() -> String
+    static func buildDate() -> String
     {
-        if let value = self.rootInfo()["BuildDate"] as? String
+        if let value = SKFoundation.configurationInfo["BuildDate"] as? String
         {
             return value
         }
@@ -246,7 +243,7 @@ public extension Bundle
      *
      * @returns String
      */
-    func buildNumber() -> String
+    static func buildNumber() -> String
     {
         return Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
     }
@@ -257,9 +254,9 @@ public extension Bundle
      *
      * @returns String
      */
-    func organization() -> String
+    static func organization() -> String
     {
-        if let value = self.rootInfo()["Organization"] as? String
+        if let value = SKFoundation.configurationInfo["Organization"] as? String
         {
             return value
         }
@@ -273,9 +270,9 @@ public extension Bundle
      *
      * @returns String
      */
-    func prefix() -> String
+    static func prefix() -> String
     {
-        if let value = self.rootInfo()["Prefix"] as? String
+        if let value = SKFoundation.configurationInfo["Prefix"] as? String
         {
             return value
         }
@@ -292,7 +289,7 @@ public extension Bundle
      *
      * @returns String
      */
-    func prefix(append fragment: String) -> String
+    static func prefix(append fragment: String) -> String
     {
         return self.prefix() + "." + fragment
     }
@@ -303,7 +300,7 @@ public extension Bundle
      *
      * @returns String.
      */
-    func version() -> String
+    static func version() -> String
     {
         return Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
     }
@@ -317,7 +314,7 @@ public extension Bundle
      *
      * @returns String
      */
-    func versionAndBuildNumber() -> String
+    static func versionAndBuildNumber() -> String
     {
         return self.version() + " (" + self.buildNumber() + ")"
     }

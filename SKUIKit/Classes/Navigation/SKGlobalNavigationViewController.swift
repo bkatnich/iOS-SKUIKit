@@ -24,7 +24,7 @@ open class SKGlobalNavigationViewController: UINavigationController
         //
         // Register with the ThemeManager
         //
-        SKThemeManager.shared().globalNavigationController = self
+        SKThemeManager.shared.globalNavigationController = self
     }
 
 

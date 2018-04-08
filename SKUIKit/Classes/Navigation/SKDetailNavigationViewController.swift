@@ -24,7 +24,7 @@ open class SKDetailNavigationViewController: UINavigationController
         //
         // Register with the ThemeManager
         //
-        SKThemeManager.shared().add(detailNavigationController: self)
+        SKThemeManager.shared.add(detailNavigationController: self)
     }
 
 

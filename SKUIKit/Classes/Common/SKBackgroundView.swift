@@ -21,7 +21,7 @@ open class SKBackgroundView: UIView
     {
         super.init(frame: frame)
         
-        self.backgroundColor = SKThemeManager.shared().viewBackgroundColor
+        self.backgroundColor = SKThemeManager.shared.viewColor
     }
     
     
@@ -29,6 +29,6 @@ open class SKBackgroundView: UIView
     {
         super.init(coder: coder)
         
-        self.backgroundColor = SKThemeManager.shared().viewBackgroundColor
+        self.backgroundColor = SKThemeManager.shared.viewColor
     }
 }
