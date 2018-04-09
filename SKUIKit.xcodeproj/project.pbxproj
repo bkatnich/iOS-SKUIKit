@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A9C0DEA17B52F1C75C2DDAF2 /* Pods_SKUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 187D6B0C119FACE6E273AA8F /* Pods_SKUIKit.framework */; };
 		E4042FD320682AFA008B5546 /* SKGlobalTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4042FD220682AFA008B5546 /* SKGlobalTabBarController.swift */; };
+		E42A483A207AF5E80032E9E8 /* SKShowWithNoAnimationSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42A4839207AF5E80032E9E8 /* SKShowWithNoAnimationSegue.swift */; };
 		E43899B4204CB5D600D55336 /* SKSplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43899B3204CB5D600D55336 /* SKSplashViewController.swift */; };
 		E448A9152030230A009C8262 /* SKTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E448A9142030230A009C8262 /* SKTableViewDataSource.swift */; };
 		E4516A02203A54DE000EED00 /* SKCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4516A01203A54DE000EED00 /* SKCollectionViewDataSource.swift */; };
@@ -35,6 +36,7 @@
 		187D6B0C119FACE6E273AA8F /* Pods_SKUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SKUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B59FFAFD7C2A25DBFB69D76A /* Pods-SKUIKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SKUIKit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SKUIKit/Pods-SKUIKit.debug.xcconfig"; sourceTree = "<group>"; };
 		E4042FD220682AFA008B5546 /* SKGlobalTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKGlobalTabBarController.swift; sourceTree = "<group>"; };
+		E42A4839207AF5E80032E9E8 /* SKShowWithNoAnimationSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKShowWithNoAnimationSegue.swift; sourceTree = "<group>"; };
 		E43899B3204CB5D600D55336 /* SKSplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKSplashViewController.swift; sourceTree = "<group>"; };
 		E448A9142030230A009C8262 /* SKTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKTableViewDataSource.swift; sourceTree = "<group>"; };
 		E4516A01203A54DE000EED00 /* SKCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKCollectionViewDataSource.swift; sourceTree = "<group>"; };
@@ -94,12 +96,21 @@
 				E4516A0B203B768D000EED00 /* SKUIKIt.swift */,
 				E49DCA4B205F8081006DFB43 /* SKThemeManager.swift */,
 				E4BC456520637CCC002AECEB /* Common */,
-				E4516A15203B7EEC000EED00 /* CollectionViews */,
+				E4516A15203B7EEC000EED00 /* CollectionView */,
 				E4BC458A2063823B002AECEB /* Navigation */,
+				E42A4838207AF5A60032E9E8 /* Segue */,
 				E43899B1204CB5A700D55336 /* SplashView */,
-				E4516A16203B7EFE000EED00 /* TableViews */,
+				E4516A16203B7EFE000EED00 /* TableView */,
 			);
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		E42A4838207AF5A60032E9E8 /* Segue */ = {
+			isa = PBXGroup;
+			children = (
+				E42A4839207AF5E80032E9E8 /* SKShowWithNoAnimationSegue.swift */,
+			);
+			path = Segue;
 			sourceTree = "<group>";
 		};
 		E43899B1204CB5A700D55336 /* SplashView */ = {
@@ -110,7 +121,7 @@
 			path = SplashView;
 			sourceTree = "<group>";
 		};
-		E4516A15203B7EEC000EED00 /* CollectionViews */ = {
+		E4516A15203B7EEC000EED00 /* CollectionView */ = {
 			isa = PBXGroup;
 			children = (
 				E4F1379A202992B3005211AF /* SKCollectionViewCell.swift */,
@@ -120,10 +131,10 @@
 				E4516A11203B7DEB000EED00 /* SKCollectionViewMenuController.swift */,
 				E4516A1B203B87FF000EED00 /* SKCollectionViewMenuDataSource.swift */,
 			);
-			path = CollectionViews;
+			path = CollectionView;
 			sourceTree = "<group>";
 		};
-		E4516A16203B7EFE000EED00 /* TableViews */ = {
+		E4516A16203B7EFE000EED00 /* TableView */ = {
 			isa = PBXGroup;
 			children = (
 				E4F13798202991A1005211AF /* SKTableViewCell.swift */,
@@ -133,7 +144,7 @@
 				E4516A13203B7EB1000EED00 /* SKTableViewMenuController.swift */,
 				E4516A1D203B899E000EED00 /* SKTableViewMenuDataSource.swift */,
 			);
-			path = TableViews;
+			path = TableView;
 			sourceTree = "<group>";
 		};
 		E4BC456520637CCC002AECEB /* Common */ = {
@@ -343,6 +354,7 @@
 				E4BC458E2063827E002AECEB /* SKDetailNavigationViewController.swift in Sources */,
 				E4516A02203A54DE000EED00 /* SKCollectionViewDataSource.swift in Sources */,
 				E4FF186D2056383800C94757 /* SKBackgroundView.swift in Sources */,
+				E42A483A207AF5E80032E9E8 /* SKShowWithNoAnimationSegue.swift in Sources */,
 				E49DCA4C205F8081006DFB43 /* SKThemeManager.swift in Sources */,
 				E4BC458C20638271002AECEB /* SKGlobalNavigationViewController.swift in Sources */,
 				E4516A1C203B87FF000EED00 /* SKCollectionViewMenuDataSource.swift in Sources */,

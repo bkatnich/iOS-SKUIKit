@@ -13,6 +13,7 @@ target 'SKUIKit' do
     #
     # SKUIKit-specific libraries
     #
+    pod 'Hero'
     pod 'Hue'
     
 end

@@ -1,6 +1,7 @@
 PODS:
   - Alamofire (4.7.1)
   - FontAwesome.swift (1.3.2)
+  - Hero (1.1.0)
   - Hue (3.0.1)
   - SandKattFoundation (0.5.3):
     - Alamofire
@@ -9,6 +10,7 @@ PODS:
   - SwiftyBeaver (1.5.2)
 
 DEPENDENCIES:
+  - Hero
   - Hue
   - SandKattFoundation
 
@@ -16,6 +18,7 @@ SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - Alamofire
     - FontAwesome.swift
+    - Hero
     - Hue
     - SandKattFoundation
     - SwiftyBeaver
@@ -23,10 +26,11 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: 68d7d521118d49c615a8d2214d87cdf525599d30
   FontAwesome.swift: b4e4c8ccbbecb12f9b592bc533ff237af3706667
+  Hero: ce59e81c79390613d97b43da7179e2c5e1017e04
   Hue: 93e852fa6211ab35922ad8c293f51c43d6c79eb2
   SandKattFoundation: 9dc71e48601a8193d345041b82f4aff5af90618a
   SwiftyBeaver: 85daaaa2b3ae6e31b7b55c99430e8b91dac088af
 
-PODFILE CHECKSUM: 6f474f9b1bc4ad752d5194ef2f0e16b24144fdb3
+PODFILE CHECKSUM: 51a988fa2a07850e83530a0b1f65d72522745cab
 
 COCOAPODS: 1.5.0

@@ -8,6 +8,7 @@
 
 import UIKit
 import SandKattFoundation
+import Hero
 
 
 /**
@@ -19,7 +20,7 @@ import SandKattFoundation
     // MARK: -- Properties --
     
     @IBInspectable public var segueName: String = "SplashSegue"
-    @IBInspectable public var timeoutDelay: Int = 0
+    @IBInspectable public var timeoutDelay: Int = 2
 
     
     // MARK: -- IBOutlets --
@@ -120,6 +121,18 @@ import SandKattFoundation
     
     private func executeSegue()
     {
+        if let navigationController = self.navigationController
+        {
+            navigationController.hero.isEnabled = true
+            self.hero.modalAnimationType = .fade
+        }
+        
+        else
+        {
+            self.hero.isEnabled = true
+            self.hero.modalAnimationType = .fade
+        }
+        
         //
         // Trigger the segue at the appropriate time delay
         //
