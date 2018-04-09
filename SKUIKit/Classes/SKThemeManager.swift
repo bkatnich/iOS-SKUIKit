@@ -186,8 +186,6 @@ public class SKThemeManager: CustomDebugStringConvertible
      */
     private init()
     {
-        log.debug("called")
-       
         // NavigationBar
         self.themeNavBar()
         

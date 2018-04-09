@@ -28,10 +28,7 @@ public class SKUIKit: SKFramework
      */
     public static func start()
     {
-        //
-        // Log startup state
-        //
-        log.debug("\n\n" + self.debugStatus())
+        
     }
     
     
