@@ -121,18 +121,6 @@ import Hero
     
     private func executeSegue()
     {
-        if let navigationController = self.navigationController
-        {
-            navigationController.hero.isEnabled = true
-            self.hero.modalAnimationType = .fade
-        }
-        
-        else
-        {
-            self.hero.isEnabled = true
-            self.hero.modalAnimationType = .fade
-        }
-        
         //
         // Trigger the segue at the appropriate time delay
         //
