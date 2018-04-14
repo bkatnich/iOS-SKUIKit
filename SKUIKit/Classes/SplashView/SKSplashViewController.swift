@@ -8,7 +8,6 @@
 
 import UIKit
 import SandKattFoundation
-import Hero
 
 
 /**

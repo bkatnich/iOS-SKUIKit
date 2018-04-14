@@ -174,7 +174,7 @@ public class SKNetworkManager : CustomDebugStringConvertible
      */
     private init()
     {
-       log.debug("called")
+       
     }
 
 
@@ -185,8 +185,6 @@ public class SKNetworkManager : CustomDebugStringConvertible
      */
     public func startListening()
     {
-        log.debug("called")
-        
         guard let baseUrl = SKNetworkManager.shared.baseUrl?.absoluteString
         else
         {
@@ -195,12 +193,10 @@ public class SKNetworkManager : CustomDebugStringConvertible
             return
         }
         
-        log.debug("found base url: \(baseUrl)")
-        
         self.networkManager = NetworkReachabilityManager(host: baseUrl)
         self.networkManager?.listener = { status in
         
-            log.debug("Network: \(baseUrl) status change heard: \(status)")
+            //log.debug("Network: \(baseUrl) status change heard: \(status)")
             
             //
             // Notify interested observers
@@ -229,7 +225,7 @@ public class SKNetworkManager : CustomDebugStringConvertible
      */
     public class func deleteFrom(url: String, completion: @escaping (Bool, SKError?) -> Void)
     {
-        log.debug("called with url: \(url)")
+        //log.debug("called with url: \(url)")
         
         //
         // Execute DELETE request with default validation (HTTP Codes 200-299)
@@ -267,7 +263,7 @@ public class SKNetworkManager : CustomDebugStringConvertible
      */
     public class func getAsArray(url: String, completion: @escaping ArrayCompletionHandler)
     {
-        log.debug("called with url: " + url)
+        //log.debug("called with url: " + url)
         
         //
         // Execute GET request with default validation (HTTP Codes 200-299)
@@ -449,7 +445,7 @@ public class SKNetworkManager : CustomDebugStringConvertible
      */
     public class func putAt(url: String, parameters: Dictionary<String, Any>, completion: @escaping DictionaryCompletionHandler)
     {
-        log.debug("called with url: " + url)
+        //log.debug("called with url: " + url)
         
         //
         // Execute POST request with default validation (HTTP Codes 200-299)
@@ -505,7 +501,7 @@ public class SKNetworkManager : CustomDebugStringConvertible
      */
     public class func requestGet(url: String, completion: @escaping DictionaryCompletionHandler)
     {
-        log.debug("called with url: " + url)
+        //log.debug("called with url: " + url)
         
         //
         // Execute GET request with default validation (HTTP Codes 200-299)

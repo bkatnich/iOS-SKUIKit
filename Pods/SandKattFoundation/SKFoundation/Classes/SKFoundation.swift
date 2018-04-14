@@ -67,9 +67,11 @@ public class SKFoundation
             "\nbuild date: " + Bundle.buildDate() +
             "\norganization: " + Bundle.organization() +
 
-            "\n\n-- Sibling Frameworks --\n\n" + String(describing: self.siblingFrameworks) +
+            "\n\n\n-- Sibling Frameworks --\n\n" + String(describing: self.siblingFrameworks) +
+            
+            "\n\n\n-- Content Holder --\n\n" + String(describing: SKContentManager.shared().debugDescription) +
 
-            "\n\n-- Configuration --\n\n" + configurationDecoded
+            "\n\n\n-- Configuration --\n\n" + configurationDecoded
         
         return debugStatus
     }
